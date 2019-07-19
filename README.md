@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/ZKSI/CumulantsFeatures.jl.svg?branch=master)](https://travis-ci.org/ZKSI/CumulantsFeatures.jl)
 [![Coverage Status](https://coveralls.io/repos/github/ZKSI/CumulantsFeatures.jl/badge.svg?branch=master)](https://coveralls.io/github/ZKSI/CumulantsFeatures.jl?branch=master)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1469443.svg)](https://doi.org/10.5281/zenodo.1469443)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3339299.svg)](https://doi.org/10.5281/zenodo.3339299)
 
 CumulantsFeatures.jl provides multivariate cumulants based algorithms used to select a features subset or detect an outlier subset out of realisations of multivariate data.
 In both cases,the ordinary data subset is assumed to be modelled by the Gaussian multivariate distribution, while the outlier data subset is assumed to be modelled by the non-Gaussian multivariate distribution.
@@ -34,11 +34,11 @@ julia> function cumfsel(Σ::SymmetricTensor{T,2}, c::SymmetricTensor{T, N}, f::S
 ```
 To compute the covariance matrix and `N`-th cumulant's tensor use Cumulants.jl
 `Σ.dats` is a size of the `Σ` matrix stored in the `SymmetricTensor` type, see SymmetricTensors.jl.
-The `f` is the optimization function, `["hosvd", "norm", "mev"]` are supported. The "hosvd" uses the Higher Order Singular Value decomposition approximation of the higher order cumulant's tensor to extract information. While using "hosvd" we have the following family of methods. For `N=3` the Joint Skewness Band Selection (JSBS) - see X. Geng, K. Sun, L. Ji, H. Tang & Y. Zhao 'Joint Skewness and Its Application in Unsupervised Band Selection for Small Target Detection Sci Rep. vol.5 (2015) (https://www.nature.com/articles/srep09915). For the JSBS application in biomedical data analysis see: M. Domino, K. Domino, Z. Gajewski, 'An application of higher order multivariate cumulants in modelling of myoelectrical activity of porcine uterus during early pregnancy', Biosystems (2018), (https://doi.org/10.1016/j.biosystems.2018.10.019). For `N = 4` the Joint Kurtosis Features Selection (JKFS) - see K. Domino: 'The use of the Higher Order Singular Value Decomposition of the 4-cumulant's tensors in features selection and outlier detection', [arXiv:1804.00541] (https://arxiv.org/abs/1804.00541) (2018). For `N = 5` the Joint Hyper Kurtosis Features Selection (JHKFS). For application of HOSVD based methods see also P. Głomb, K. Domino, M. Romaszewski, M. Cholewa 'Band selection with Higher Order Multivariate Cumulants for small target detection in hyperspectral images', [arXiv:1808.03513] (https://arxiv.org/abs/1808.03513) (2018). The "norm" uses the norm of the higher order cumulant's tensor, this is a benchmark method for comparison. The "mev" uses only second order correlations, see: C. Sheffield, 'Selecting band combinations from multispectral data', Photogrammetric Engineering and Remote Sensing, vol. 51 (1985)
+The `f` is the optimization function, `["hosvd", "norm", "mev"]` are supported. The "hosvd" uses the Higher Order Singular Value decomposition approximation of the higher order cumulant's tensor to extract information. While using "hosvd" we have the following family of methods. For `N=3` the Joint Skewness Band Selection (JSBS) - see X. Geng, K. Sun, L. Ji, H. Tang & Y. Zhao 'Joint Skewness and Its Application in Unsupervised Band Selection for Small Target Detection Sci Rep. vol.5 (2015) (https://www.nature.com/articles/srep09915). For the JSBS application in biomedical data analysis see: M. Domino, K. Domino, Z. Gajewski, 'An application of higher order multivariate cumulants in modelling of myoelectrical activity of porcine uterus during early pregnancy', Biosystems (2018), (https://doi.org/10.1016/j.biosystems.2018.10.019). For `N = 4` the Joint Kurtosis Features Selection (JKFS) - see K. Domino: 'Multivariate cumulants in features selection and outlier detection for financial data analysis', [arXiv:1804.00541] (https://arxiv.org/abs/1804.00541) (2018). For `N = 5` the Joint Hyper Kurtosis Features Selection (JHKFS). For application of HOSVD based methods see also P. Głomb, K. Domino, M. Romaszewski, M. Cholewa 'Band selection with Higher Order Multivariate Cumulants for small target detection in hyperspectral images', [arXiv:1808.03513] (https://arxiv.org/abs/1808.03513) (2018). The "norm" uses the norm of the higher order cumulant's tensor, this is a benchmark method for comparison. The "mev" uses only second order correlations, see: C. Sheffield, 'Selecting band combinations from multispectral data', Photogrammetric Engineering and Remote Sensing, vol. 51 (1985)
 
 ```julia
 
-julia> srand(42);
+julia> Random.seed!(42);
 
 julia> using Cumulants
 
@@ -102,7 +102,7 @@ correspond to outlier realisations. `α` is the sensitivity (threshold) paramete
 
 
 ```julia
-julia> srand(42);
+julia> Random.seed!(42);
 
 julia> x = vcat(rand(8,2), 20*rand(2,2))
 10×2 Array{Float64,2}:
@@ -146,7 +146,7 @@ number of specific directions, data are projected onto.
 
 ```julia
 
-julia> srand(42);
+julia> Random.seed!(42);
 
 julia> x = vcat(rand(8,2), 20*rand(2,2))
 10×2 Array{Float64,2}:
@@ -191,4 +191,4 @@ In folder tests there following Julia executable files.
 
 This project was partially financed by the National Science Centre, Poland – project number 2014/15/B/ST6/05204.
 
-While using this module, please cite K. Domino: 'The use of the Higher Order Singular Value Decomposition of the 4-cumulant's tensors in features selection and outlier detection', [arXiv:1804.00541] (https://arxiv.org/abs/1804.00541).
+While using this module, please cite K. Domino: 'Multivariate cumulants in features selection and outlier detection for financial data analysis', [arXiv:1804.00541] (https://arxiv.org/abs/1804.00541).
