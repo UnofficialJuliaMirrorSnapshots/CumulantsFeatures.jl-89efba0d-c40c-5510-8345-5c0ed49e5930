@@ -1,9 +1,9 @@
 # CumulantsFeatures.jl
 
 
-[![Build Status](https://travis-ci.org/ZKSI/CumulantsFeatures.jl.svg?branch=master)](https://travis-ci.org/ZKSI/CumulantsFeatures.jl)
-[![Coverage Status](https://coveralls.io/repos/github/ZKSI/CumulantsFeatures.jl/badge.svg?branch=master)](https://coveralls.io/github/ZKSI/CumulantsFeatures.jl?branch=master)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3339299.svg)](https://doi.org/10.5281/zenodo.3339299)
+[![Build Status](https://travis-ci.org/iitis/CumulantsFeatures.jl.svg?branch=master)](https://travis-ci.org/iitis/CumulantsFeatures.jl)
+[![Coverage Status](https://coveralls.io/repos/github/iitis/CumulantsFeatures.jl/badge.svg?branch=master)](https://coveralls.io/github/iitis/CumulantsFeatures.jl?branch=master)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3454453.svg)](https://doi.org/10.5281/zenodo.3454453)
 
 CumulantsFeatures.jl provides multivariate cumulants based algorithms used to select a features subset or detect an outlier subset out of realisations of multivariate data.
 In both cases,the ordinary data subset is assumed to be modelled by the Gaussian multivariate distribution, while the outlier data subset is assumed to be modelled by the non-Gaussian multivariate distribution.
@@ -20,7 +20,7 @@ Within Julia, run
 pkg> add CumulantsFeatures
 ```
 
-to install the files. Julia 0.7 or later is required. Requires SymmetricTensors Cumulants and CumulantsUpdates modules.
+to install the files. Julia 1.0 or later is required. Requires SymmetricTensors Cumulants and CumulantsUpdates modules.
 
 ## Features selection
 
@@ -105,7 +105,7 @@ julia> t = rand(SymmetricTensor{Float64, 3}, 4);
 julia> cum2mat(t)
 SymmetricTensor{Float64,2}(Union{Nothing, Array{Float64,2}}[[7.69432 4.9757; 4.9757 5.72935] [6.09424 4.92375; 5.05157 3.17723]; nothing [7.33094 4.93128; 4.93128 4.7921]], 2, 2, 4, true)
 
-
+Parallel computation is supported
 ```
 
 ## Detection
@@ -198,19 +198,19 @@ julia> rxdetect(x, 0.95)
 ```
 ## Data generation and tests
 
-In folder tests there following Julia executable files.
+In folder `test\outliers_detect` and `test\features_select` there are Julia executable files testing selection and detection algorithms on artificial data.
 
 ### Features selection
 
- The executable file `jkfs_select.jl` generates multivariate data with non-Gaussian subset of marginals modelled by the t-Student copula. This file is parametrised by an integer being a number of degrees of freedom of the t-Student copula. Returns a `.jld2` file with data in `\jkfsdata_select` folder. Run `jkfs_data_analysis.jl` within, to achieve results of features selection given different methods.
+ The executable file `gendat4selection.jl` generates multivariate data with non-Gaussian subset of marginals modelled by the t-Student copula. This file is parametrised by an integer being a number of degrees of freedom of the t-Student copula. Returns a `.jld2` file with data. Run `jkfs_selection.jl` to achieve results of features selection given different methods.
 
 ### Outlier detection
 
- The executable file `jkfs_outliers.jl` generates multivariate data with non-Gaussian outliers subset of realisations modeled by the t-Student copula.
- This file is parametrised by an integer being a number of degrees of freedom of the t-Student copula. Returns a `.jld2` file with data in `\data_outliers` folder. Run `detect.jl` within to detect outliers and compare the "HOSVD" based method with the "RX" detector.
+ The executable file `gendat4detection.jl` generates multivariate data with non-Gaussian outliers subset of realisations modeled by the t-Student copula.
+ This file is parametrised by an integer being a number of degrees of freedom of the t-Student copula. Returns a `.jld2` file with data. Run `detect_outliers.jl` to detect outliers and compare the "HOSVD" based method with the "RX" detector.
 
 # Citing this work
 
 This project was partially financed by the National Science Centre, Poland – project number 2014/15/B/ST6/05204.
 
-While using this module, please cite K. Domino: 'Multivariate cumulants in features selection and outlier detection for financial data analysis', [arXiv:1804.00541] (https://arxiv.org/abs/1804.00541).
+While using `hosvdc4detect()` or `cumfsel()` please cite K. Domino: 'Multivariate cumulants in features selection and outlier detection for financial data analysis', [arXiv:1804.00541] (https://arxiv.org/abs/1804.00541).
